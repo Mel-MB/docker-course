@@ -115,14 +115,17 @@ Une fois le fichier [Dockerfile](image/Dockerfile) écrit vous pouvez créer l'i
 - `docker images` ou `docker image list` pour afficher les images et ainsi voir l'image que vous venez de créer (<none> ... <none> ... ID)
 
 Même si elle n'a pas de nom et pas de tag, cela n'empêche de faire une instance à partir de cette dernière :
-
-- `docker run --rm <imageID>` cela lance notre serveur json-server, tout à l'air ok. Par contre on est bloqué car on ne peut pas quitter depuis notre terminal (car pas interactif) il faut donc passer par un autre terminal
+- `docker run --rm <imageID>` cela lance notre serveur json-server, tout à l'air ok. Par contre on est bloqué car on ne peut pas quitter depuis notre terminal (car pas interactif) il faut donc **passer par un autre terminal pour kill le process en cours:**
   - avec `docker ps` on affiche les conteneurs actifs, on repère l'ID du conteneur (pas de l'image) de celui du json-server
   - avec `docker stop <containerID>` on arrête le conteneur et on est libre !
 
 **Problème:** notre conteneur n'a pas accès aux ports de notre machine hôte, et ne peut donc pas exposer notre application sur un port.
-- Par défaut json-server il tourne sur localhost, et pour pouvoir accéder aux réseau de la machine hôte c'est `0.0.0.0` l'ip. Et en plus préciser le port à exposer avec `EXPOSE` (dans le Dockerfile).
+- Par défaut json-server il tourne sur localhost, et pour pouvoir accéder aux réseau de la machine hôte c'est `0.0.0.0` l'ip. Et en plus préciser le port à exposer avec `EXPOSE PORT` (dans le Dockerfile).
+- Ensuite on peut lancer `docker run --rm -p <hostPORT>:<containerPORT>  <containerID>`
 
+Finalement ça fonctionne mais ce n'est pas très propre de ne pas donner de tag à notre image.
+- `docker build . -t <containerName>` ici la commande permet de nommer notre container
+- `docker run --rm -p 8080:3000 json-server` lance un conteneur de notre image que l'on a nommé
 ## Mémo
 
 ### Images
