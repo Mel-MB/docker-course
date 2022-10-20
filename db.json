@@ -1,0 +1,30 @@
+{
+    "articles": [
+        {
+            "id": 1,
+            "title": "Un titre",
+            "author": "Vous",
+            "body": "Notre article"
+        },
+        {
+            "id": 2,
+            "title": "Un deuxème titre",
+            "author": "Vous",
+            "body": "Notre deuxième article"
+        },
+        {
+            "id": 3,
+            "title": "Un troisième titre",
+            "author": "Vous",
+            "body": "Notre troisième article"
+        }
+    ],
+    "profile": {
+        "name": "Vous",
+        "email": "olivier.hachette@oclock.io"
+    },
+    "profile2": {
+        "name": "Nous",
+        "email": "olivier.hachette@oclock.com"
+    }
+}
